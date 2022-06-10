@@ -1,0 +1,17 @@
+services:
+  user_api:
+    image: slundi_dm/user
+    build: ./user_api
+  
+  fake_smtp_server:
+    image: slundi_dm/fake_smtp_server
+    build: ./fake_smtp_server
+
+  db:
+    image: docker pull postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_PASSWORD: "change-me"
+      #TODO: timezone
+      #TODO: init DB (create tables)
