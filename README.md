@@ -76,4 +76,6 @@ findTime = 60
 maxretry = 10 #
 ```
 
+You can also detect bad requests (HTTP error 400) in order to ban clients that are trying to find exploits (replace 401 with 400 in the previous code snippet).
+
 There is also [Crowdsec](https://crowdsec.net/) that can replace fail2ban and it have a community detection system.
