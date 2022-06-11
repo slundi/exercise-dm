@@ -4,6 +4,7 @@ services:
     build: ./user_api
     environment:
       ACTIVATION_DELAY: 60  # activation delay in seconds before a code expires
+      TOKEN_DELAY: 300      # token delay validity
   
   fake_smtp_server:
     #image: slundi_dm/fake_smtp_server

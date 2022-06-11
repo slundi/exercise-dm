@@ -1,4 +1,4 @@
-import os, re, random, json
+import os, re, random, json, secrets
 from urllib.request import urlopen
 import bcrypt
 
@@ -15,8 +15,8 @@ def register(email: str, password: str):
     if not email_regex.match(email):
         return {'ok': False, 'reason': 'Your is miswritten'}
     # check password strength, at least a min length
-    if len(password)<5:
-        return {'ok': False, 'reason': 'Password is too short (5 characters minimum are required)'}
+    if len(password)<5 or len(password)>32: #BCrypt has a limit of 72 chars, so we define an acceptable length
+        return {'ok': False, 'reason': 'Password is too short or too long (5 to 32 characters are required)'}
     #TODO: check email is unique in DB
     if True:
         return {'ok': False, 'reason': 'You are already registered'}
@@ -59,4 +59,9 @@ def resend_code(email: str):
     except:
         raise HTTPException(status_code=500, detail="Cannot send your new registration code")
     #commit if OK
+    return {'ok': True}
+
+@app.get("/check-token")
+def resend_code(email: str, token: str):
+    #TODO:
     return {'ok': True}
