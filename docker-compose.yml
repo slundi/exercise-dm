@@ -7,6 +7,7 @@ services:
       TOKEN_DELAY: 300      # token delay validity
     depends_on:
       - db
+      - fake_smtp_server
   
   fake_smtp_server:
     build: ./fake_smtp_server
