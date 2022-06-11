@@ -38,9 +38,11 @@ Design and build this API. You are completely free to propose the architecture y
 
 ## Solution
 
+TODO: diagram
+
 ### Running tests
 
-TODO
+TODO: how to run them
 
 ### Installation
 
@@ -50,7 +52,11 @@ TODO
 
 Password hashes are stored in the database using Bcrypt: the hash is slow so it is good against brute forece cracking and there is salt so you can't compare hashes.
 
-User account activation send the 4 digits code once. If the user loses his code, a new one is generated with a new valid period.
+To improve security we can set password rules (min/max length, digit required, upper and lower case characters required and at least one special characters) but this is not implemented in this exercise.
+
+User account activation send the 4 digits code once. If the user loses his code, a new one is generated with a new valid period. Only one registration code can be active.
+
+Traffic is running through HTTP so traffic is not encrypted. You'll need to install a web server with HTTPS support in front of the Docker stack.
 
 Only the web server port is exposed in the Docker stack. It does not protect from any attack. To protect it, you can use **fail2ban** with **nginx** server in front of the auth service as followed:
 
