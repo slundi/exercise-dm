@@ -1,13 +1,14 @@
+version: '3'
 services:
   user_api:
-    #image: slundi_dm/user
     build: ./user_api
     environment:
       ACTIVATION_DELAY: 60  # activation delay in seconds before a code expires
       TOKEN_DELAY: 300      # token delay validity
+    depends_on:
+      - db
   
   fake_smtp_server:
-    #image: slundi_dm/fake_smtp_server
     build: ./fake_smtp_server
     environment:
       FROM_EMAIL: noreply@exercise-dm.fake  # email of the sender
@@ -19,5 +20,4 @@ services:
       TZ: "Europe/Paris"  # local timestamp of the machine
       POSTGRES_DB: users
       POSTGRES_PASSWORD: "change-me"
-      #TODO: timezone
       #TODO: init DB (create tables)
