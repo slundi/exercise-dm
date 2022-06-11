@@ -1,5 +1,4 @@
 import os, re
-from typing import Union
 
 from fastapi import FastAPI, HTTPException
 
