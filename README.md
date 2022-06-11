@@ -42,7 +42,10 @@ TODO: diagram
 
 ### Running tests
 
-TODO: how to run them
+```shell
+pip3 install pytest
+pytest
+```
 
 ### Installation
 
