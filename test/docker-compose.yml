@@ -1,0 +1,19 @@
+version: '3'
+services:
+  user_api_test:
+    build:
+      context: .
+    environment:
+      ACTIVATION_DELAY: 60  # activation delay in seconds before a code expires
+      TOKEN_DELAY: 300      # token delay validity
+      FROM_EMAIL: noreply@exercise-dm.fake  # email of the sender
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14-alpine
+    environment:
+      TZ: "Europe/Paris"  # local timestamp of the machine
+      POSTGRES_DB: users_test
+      POSTGRES_PASSWORD: "change-me"
+      #TODO: init DB (create tables)
