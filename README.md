@@ -38,7 +38,7 @@ Design and build this API. You are completely free to propose the architecture y
 
 ## Solution
 
-TODO: diagram
+![Schema](schema.png?raw=true)
 
 ### Running tests
 
@@ -47,9 +47,13 @@ pip3 install pytest
 pytest
 ```
 
-### Installation
+### Installation & running
 
-TODO
+```shell
+docker-compose up
+```
+
+Access from: <http://your-host:8080>
 
 ### Security
 
