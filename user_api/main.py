@@ -55,8 +55,10 @@ def login(email: str = Form(), password: str = Form()):
 
 @app.post("/validate")
 def validate(email: str = Form(), code: str = Form()):
+    if len(code) != 4:
+        return {'ok': False, 'reason': 'Your registration code is wrong'}
     try:
-        db.activate_user(email, code)
+        db.activate_user(email, code.lstrip('0'))
     except db.ExpiredActivationCodeException:
         return {'ok': False, 'reason': 'Registration code has expired, you need to resend it'}
     except db.WrongActivationCodeException:
