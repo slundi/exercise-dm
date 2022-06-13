@@ -1,4 +1,0 @@
-fastapi>=0.68.0
-bcrypt>=3.2.2
-psycopg2
-pytest
