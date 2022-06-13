@@ -6,11 +6,7 @@ from fastapi.testclient import TestClient
 from .main import app
 
 client = TestClient(app)
-os.environ["POSTGRES_HOST"] = "localhost"
-os.environ["POSTGRES_USER"] = "dm"
-os.environ["POSTGRES_DB"] = "dm"
-os.environ["POSTGRES_PASSWORD"] = "dailymotion"
-conn = psycopg2.connect(host=os.getenv("POSTGRES_HOST","localhost"), database=os.getenv("POSTGRES_DB","dm"), user=os.getenv("POSTGRES_DB","postgres"), password=os.getenv("POSTGRES_PASSWORD"))
+conn = psycopg2.connect(host=os.getenv("POSTGRES_HOST","localhost"), dbname=os.getenv("POSTGRES_DB","postgres"), user=os.getenv("POSTGRES_USER","postgres"), password=os.getenv("POSTGRES_PASSWORD"))
 cur = conn.cursor()
 
 def test_registration_email():

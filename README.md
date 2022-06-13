@@ -43,8 +43,7 @@ Design and build this API. You are completely free to propose the architecture y
 ### Running tests
 
 ```shell
-pip3 install pytest
-pytest
+docker-compose -f docker-compose-tests.yml up --exit-code-from test_apis
 ```
 
 ### Installation & running

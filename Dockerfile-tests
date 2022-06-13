@@ -1,0 +1,13 @@
+# https://fastapi.tiangolo.com/deployment/docker/
+FROM python:3.9
+
+WORKDIR /code
+
+COPY ./requirements-tests.txt /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY ./fake_smtp_server /code/fake_smtp_server
+COPY ./user_api /code/user_api
+
+#sleep 20s to allow DB to start
+CMD sleep 20 && pytest

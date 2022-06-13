@@ -1,7 +1,7 @@
 import os
 import psycopg2
 
-conn = psycopg2.connect(host=os.getenv("POSTGRES_HOST","localhost"), database=os.getenv("POSTGRES_DB","dm"), user=os.getenv("POSTGRES_DB","postgres"), password=os.getenv("POSTGRES_PASSWORD"))
+conn = psycopg2.connect(host=os.getenv("POSTGRES_HOST","localhost"), dbname=os.getenv("POSTGRES_DB","postgres"), user=os.getenv("POSTGRES_DB","postgres"), password=os.getenv("POSTGRES_PASSWORD"))
 cur = conn.cursor()
 
 class WrongActivationCodeException(Exception):

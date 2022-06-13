@@ -1,0 +1,29 @@
+version: '2.1'
+services:
+  fake_smtp_server:
+    build: ./fake_smtp_server
+    environment:
+      FROM_EMAIL: noreply@exercise-dm.fake  # email of the sender
+
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      TZ: "Europe/Paris"  # local timestamp of the machine
+      POSTGRES_PASSWORD: "change-me"
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+  test_apis:
+    build:
+      context: .
+      dockerfile: Dockerfile-tests
+    environment:
+      ACTIVATION_DELAY: 60  # activation delay in seconds before a code expires
+      TOKEN_DELAY: 300      # token delay validity
+      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: "change-me"
+      SMTP_HTTP_API: "http://fake_smtp_server:8025"
+    depends_on:
+      - db
+      - fake_smtp_server
