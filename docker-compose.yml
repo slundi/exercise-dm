@@ -5,9 +5,18 @@ services:
     environment:
       ACTIVATION_DELAY: 60  # activation delay in seconds before a code expires
       TOKEN_DELAY: 300      # token delay validity
+      POSTGRES_HOST: db
+      #POSTGRES_DB: users
+      #POSTGRES_USER: dm
+      POSTGRES_PASSWORD: "change-me"
+      SMTP_HTTP_API: "http://fake_smtp_server:8025"
     depends_on:
       - db
       - fake_smtp_server
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
   
   fake_smtp_server:
     build: ./fake_smtp_server
@@ -15,10 +24,12 @@ services:
       FROM_EMAIL: noreply@exercise-dm.fake  # email of the sender
 
   db:
-    image: docker pull postgres:14-alpine
+    image: postgres:14-alpine
     restart: always
     environment:
       TZ: "Europe/Paris"  # local timestamp of the machine
-      POSTGRES_DB: users
+      #POSTGRES_USER: dm
+      #POSTGRES_DB: users
       POSTGRES_PASSWORD: "change-me"
-      #TODO: init DB (create tables)
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d

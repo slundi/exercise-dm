@@ -3,7 +3,7 @@ from urllib.request import urlopen
 from urllib import request, parse
 import bcrypt
 
-from . import database as db
+import database as db
 
 from fastapi import FastAPI, HTTPException, Form, Request
 
