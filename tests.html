@@ -1,0 +1,46 @@
+<html>
+<body>
+<h2>Fake SMTP server: /send</h2>
+<form action="http://127.0.0.1:8025/send" method="post">
+    <input name="to" placeholder="Send to (email)" type="email" />
+    <input name="subject" placeholder="Subject" />
+    <input name="body" placeholder="Email content" />
+<button type="submit">Send fake email</button>
+</form>
+
+<h2>User API</h2>
+<h4>/register</h4>
+<form action="http://127.0.0.1:8080/register" method="post">
+    <input name="email" placeholder="Email" type="email" />
+    <input name="password" placeholder="Password" type="password" />
+<button type="submit">Register</button>
+</form>
+
+<h4>/login</h4>
+<form action="http://127.0.0.1:8080/login" method="post">
+    <input name="email" placeholder="Email" type="email" />
+    <input name="password" placeholder="Password" type="password" />
+<button type="submit">Login</button>
+</form>
+
+<h4>/validate</h4>
+<form action="http://127.0.0.1:8080/validate" method="post">
+    <input name="email" placeholder="Email" type="email" />
+    <input name="code" placeholder="####" type="number" step="1" min="0" max="9999" />
+<button type="submit">Validate account</button>
+</form>
+
+<!--<h4>/resend-code</h4>
+<form action="http://127.0.0.1:8080/resend-code" method="post">
+    <input name="email" placeholder="Email" type="email" />
+<button type="submit">Send</button>
+</form>-->
+
+<h4>/check-token</h4>
+<form action="http://127.0.0.1:8080//check-token" method="post">
+    <input name="email" placeholder="Email" type="email" />
+    <input name="token" placeholder="Token" />
+<button type="submit">Send</button>
+</form>
+</body>
+</html>
